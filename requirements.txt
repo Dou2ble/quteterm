@@ -1,0 +1,3 @@
+jstyleson
+PyQt5
+QTermWidget

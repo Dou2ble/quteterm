@@ -1,0 +1,16 @@
+{
+    "window_title": "Quteterm",
+    "font_family": "Hack",
+    "font_size": 14,
+    "size_hint": true, // show a message when resizing
+    "keyboard_zoom": true, // ctrl + and ctrl - zooming
+    "scrollbar": 2, // Options:
+    // 0 -> no scrollbar
+    // 1 -> scrollbar to the left
+    // 2 -> scrollbar to the right
+    "color_scheme": "Tango", // Options:
+    // BlackOnLightYellow, BlackOnRandomLight, BlackOnWhite,
+    // BreezeModified, DarkPastels, GreenOnBlack,
+    // Linux, Solarized, SolarizedLight,
+    // Tango, Ubuntu, WhiteOnBlack
+}

@@ -1,0 +1,61 @@
+#!/usr/bin/env python3
+
+import sys
+from os import getenv
+
+import jstyleson
+from PyQt5.QtGui import QFont, QKeySequence
+from PyQt5.QtWidgets import QApplication, QHBoxLayout, QShortcut, QWidget
+from QTermWidget import QTermWidget
+
+HOME = getenv("HOME")
+try:
+    CONFIG_RAW = open(f"{HOME}/.config/quteterm/config.jsonc", "r").read()
+except:
+    print("Could not read config")
+    sys.exit(1)
+CONFIG = jstyleson.loads(CONFIG_RAW)
+
+def window():
+    app = QApplication(sys.argv)
+
+    win = QWidget()
+    win.setGeometry(100, 100, 400, 300)
+    win.setWindowTitle(CONFIG.get("window_title"))
+
+    term = QTermWidget()
+    term.setColorScheme(CONFIG.get("color_scheme"))
+    term.startShellProgram()
+    term.setTerminalFont(QFont(
+        CONFIG.get("font_family"), CONFIG.get("font_size")
+        ))
+    term.setScrollBarPosition(CONFIG.get("scrollbar"))
+    term.setTerminalSizeHint(CONFIG.get("size_hint"))
+
+    if CONFIG.get("keyboard_zoom"):
+        QShortcut(QKeySequence("Ctrl++"), win).activated.connect(term.zoomIn)
+        QShortcut(QKeySequence("Ctrl+-"), win).activated.connect(term.zoomOut)
+
+    layout = QHBoxLayout()
+    layout.setSpacing(0)
+    layout.addWidget(term)
+    win.setLayout(layout)
+
+    match CONFIG.get("color_scheme"):
+        case "BlackOnLightYellow": bg = "#FFFFDD"
+        case "BlackOnRandomLight": bg = "#FFFFFF"
+        case "BlackOnWhite": bg = "#FFFFF"
+        case "BreezeModified": bg = "#31363B"
+        case "DarkPastels": bg = "#2C2C2C"
+        case "Solarized": bg = "#002B36"
+        case "SolarizedLight": bg = "#FDF6E3"
+        case "Ubuntu": bg = "#300A24"
+        case _:
+            bg = "#000000"
+            
+    app.setStyleSheet("QWidget {background-color: " + bg + "}")
+    
+    win.show()
+    sys.exit(app.exec_())
+
+window()
