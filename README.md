@@ -38,3 +38,6 @@ run the executable
 ```bash
 ./quteterm
 ```
+
+# TODO:
+- [ ] Add copy & paste functionality
