@@ -12,7 +12,7 @@ git clone the repo:
 install the required pip packages:
 `pip install -r requirements.txt`
 
-move the config file to the right destination
+move the config file to the right destination:
 `mkdir -p ~/.config/quteterm`
 `mv config.jsonc ~/.config/quteterm`
 
