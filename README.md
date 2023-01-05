@@ -12,6 +12,9 @@ git clone the repo:
 ```bash
 git clone git@github.com:Dou2ble/quteterm.git
 ```
+```bash
+cd quteterm
+```
 
 install the required pip packages:
 ```bash
