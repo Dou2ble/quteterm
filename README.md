@@ -10,22 +10,28 @@ The config is written in jsonc (JSON with Comments)
 # Initial Setup
 git clone the repo:
 ```bash
-git clone git@github.com:Dou2ble/quteterm.git```
+git clone git@github.com:Dou2ble/quteterm.git
+```
 
 install the required pip packages:
 ```bash
-pip install -r requirements.txt```
+pip install -r requirements.txt
+```
 
 move the config file to the right destination:
 ```bash
-mkdir -p ~/.config/quteterm```
+mkdir -p ~/.config/quteterm
+```
 ```bash
-mv config.jsonc ~/.config/quteterm```
+mv config.jsonc ~/.config/quteterm
+```
 
 chmod the executable:
 ```bash
-chmod +x quteterm`
+chmod +x quteterm
+```
 
 run the executable
 ```bash
-./quteterm```
+./quteterm
+```
