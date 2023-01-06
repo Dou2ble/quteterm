@@ -7,14 +7,17 @@ import jstyleson
 from PyQt5.QtGui import QFont, QKeySequence
 from PyQt5.QtWidgets import QApplication, QHBoxLayout, QShortcut, QWidget
 from QTermWidget import QTermWidget
+from PyQt5.QtCore import Qt, pyqtSignal
 
 HOME = getenv("HOME")
 try:
     CONFIG_RAW = open(f"{HOME}/.config/quteterm/config.jsonc", "r").read()
 except:
-    print("Could not read config")
+    print("Could not read config in ~/.config/quteterm/config.jsonc")
     sys.exit(1)
 CONFIG = jstyleson.loads(CONFIG_RAW)
+
+
 
 def window():
     app = QApplication(sys.argv)
@@ -36,6 +39,8 @@ def window():
         QShortcut(QKeySequence("Ctrl++"), win).activated.connect(term.zoomIn)
         QShortcut(QKeySequence("Ctrl+-"), win).activated.connect(term.zoomOut)
 
+    QShortcut(QKeySequence("Alt+V"), win).activated.connect(term.pasteClipboard)
+    QShortcut(QKeySequence("Alt+C"), win).activated.connect(term.copyClipboard)
     layout = QHBoxLayout()
     layout.setSpacing(0)
     layout.addWidget(term)
